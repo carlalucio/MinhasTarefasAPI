@@ -123,7 +123,7 @@ namespace MinhasTarefasAPI.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MinhasTarefasAPI.Models.ApplicationUser", b =>
+            modelBuilder.Entity("MinhasTarefasAPI.V1.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -175,7 +175,7 @@ namespace MinhasTarefasAPI.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("MinhasTarefasAPI.Models.Tarefa", b =>
+            modelBuilder.Entity("MinhasTarefasAPI.V1.Models.Tarefa", b =>
                 {
                     b.Property<int>("IdTarefaApi")
                         .ValueGeneratedOnAdd();
@@ -209,7 +209,7 @@ namespace MinhasTarefasAPI.Migrations
                     b.ToTable("Tarefas");
                 });
 
-            modelBuilder.Entity("MinhasTarefasAPI.Models.Token", b =>
+            modelBuilder.Entity("MinhasTarefasAPI.V1.Models.Token", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -245,7 +245,7 @@ namespace MinhasTarefasAPI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MinhasTarefasAPI.Models.ApplicationUser")
+                    b.HasOne("MinhasTarefasAPI.V1.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -253,7 +253,7 @@ namespace MinhasTarefasAPI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MinhasTarefasAPI.Models.ApplicationUser")
+                    b.HasOne("MinhasTarefasAPI.V1.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -266,7 +266,7 @@ namespace MinhasTarefasAPI.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("MinhasTarefasAPI.Models.ApplicationUser")
+                    b.HasOne("MinhasTarefasAPI.V1.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -274,22 +274,22 @@ namespace MinhasTarefasAPI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("MinhasTarefasAPI.Models.ApplicationUser")
+                    b.HasOne("MinhasTarefasAPI.V1.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("MinhasTarefasAPI.Models.Tarefa", b =>
+            modelBuilder.Entity("MinhasTarefasAPI.V1.Models.Tarefa", b =>
                 {
-                    b.HasOne("MinhasTarefasAPI.Models.ApplicationUser", "Usuario")
+                    b.HasOne("MinhasTarefasAPI.V1.Models.ApplicationUser", "Usuario")
                         .WithMany("Tarefas")
                         .HasForeignKey("UsuarioId");
                 });
 
-            modelBuilder.Entity("MinhasTarefasAPI.Models.Token", b =>
+            modelBuilder.Entity("MinhasTarefasAPI.V1.Models.Token", b =>
                 {
-                    b.HasOne("MinhasTarefasAPI.Models.ApplicationUser", "Usuario")
+                    b.HasOne("MinhasTarefasAPI.V1.Models.ApplicationUser", "Usuario")
                         .WithMany("Tokens")
                         .HasForeignKey("UsuarioId");
                 });

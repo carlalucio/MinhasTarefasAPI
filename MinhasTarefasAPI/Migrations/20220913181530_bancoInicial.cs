@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MinhasTarefasAPI.Migrations
 {
-    public partial class BancoInicial : Migration
+    public partial class bancoInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -51,8 +51,15 @@ namespace MinhasTarefasAPI.V1.Repositories
                 }
                 
             }
+
             _banco.SaveChanges();
             return tarefasNovas.ToList();
         }
+
+
+
+        }
+
+        
     }
 }

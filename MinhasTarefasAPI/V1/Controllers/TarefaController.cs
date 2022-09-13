@@ -25,12 +25,15 @@ namespace MinhasTarefasAPI.V1.Controllers
         /// </summary>
         /// <param name="tarefas">Utilize o método "Modelo" para acessar os parâmetros necessários</param>
         /// <returns>Tarefa cadastrada</returns>
+        /// 
+
         [Authorize] //indica que precisa de autenticação para acessar esse método. Ele armazena o registro em Cookies. Para usar token JWT tem que configurar no Startuo.cs o service.AddIdentity
         [HttpPost("sincronizar")]
         public ActionResult Sincronizar([FromBody] List<Tarefa> tarefas)
         {
             return Ok (_tarefaRepository.Sincronizacao(tarefas));
         }
+
 
         /// <summary>
         /// Operação que acessa o modelo  de uma tarefa
