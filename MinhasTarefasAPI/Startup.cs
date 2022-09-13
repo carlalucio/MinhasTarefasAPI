@@ -48,23 +48,24 @@ namespace MinhasTarefasAPI
             //configura a conexão com o banco de dados
             services.AddDbContext<MinhasTarefasContext>(op =>
             {
-                op.UseSqlite("Data Source=Database\\MinhasTarefas.db ");
+                op.UseSqlite("Data Source=Database\\MinhasTarefas.db");
             });
 
             //indica para o controller que a interface é que vai injetar a dependencia do repository
             services.AddScoped<IUsuarioRepository, UsuarioRepository>(); 
             services.AddScoped<ITarefaRepository, TarefaRepository>(); 
-            services.AddScoped <ITokenRepository, TokenRepository>();
+            services.AddScoped<ITokenRepository, TokenRepository>();
 
-            
-            services.AddMvc(config=> //configuração para aceitar formato xml na requisição
+            //configuração para aceitar formato xml na requisição
+            services.AddMvc(config=> 
             {
                 config.ReturnHttpNotAcceptable = true;  //se colocar um formato não suportado, retorna erro 406
                 config.InputFormatters.Add(new XmlSerializerInputFormatter(config));    //formato da requisição suportada
                 config.OutputFormatters.Add(new XmlSerializerOutputFormatter());        //foramato da resposta suportada
             })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddJsonOptions( //configuração para o restaurar() tarefa não ficar em loop
+                //configuração para o restaurar() tarefa não ficar em loop
+                .AddJsonOptions( 
                         options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                     );
 
@@ -102,7 +103,7 @@ namespace MinhasTarefasAPI
                 //1º coloca a versão, 2º instancia classe Info() e coloca parametros {titulo, versao}            
                 cfg.SwaggerDoc("v1.0", new Swashbuckle.AspNetCore.Swagger.Info()
                 {
-                    Title = "MinahsTarefasAPI - V1.0",
+                    Title = "MinhasTarefasAPI - V1.0",
                     Version = "v1.0"
                 });
                
@@ -200,7 +201,7 @@ namespace MinhasTarefasAPI
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+               
                 app.UseHsts();
             }
             app.UseAuthentication(); //indica a utilização do jwt token para ações com autorização
@@ -214,7 +215,7 @@ namespace MinhasTarefasAPI
             //gera a interface gráfica do Swagger e passa a configuração qual será o endpoint e o nome da API
             app.UseSwaggerUI(cfg =>
             {
-                cfg.SwaggerEndpoint(" /swagger/v1.0/swagger.json", "MinhasTarefasAPI V1.0");                
+                cfg.SwaggerEndpoint("/swagger/v1.0/swagger.json", "MinhasTarefasAPI V1.0");                
                 cfg.RoutePrefix = String.Empty; //configuração para que ao acessar a raiz da api direcione para o swaggerUI
             });
 
